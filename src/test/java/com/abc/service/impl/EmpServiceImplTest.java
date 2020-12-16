@@ -3,26 +3,29 @@ package com.abc.service.impl;
 import com.abc.common.Comm;
 import com.abc.common.Res;
 import com.abc.dao.entity.Emp;
-import com.abc.dao.factory.DaoFactory;
+
 import com.abc.dao.idao.IEmpDao;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IUserService;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class EmpServiceImplTest {
 
-
+    @Autowired
     IEmpDao empDao;
-    @Before
-    public void setUp(){
-        empDao = (IEmpDao) DaoFactory.getInstance(Comm.EMP);
-    }
+
 
     @Test
     public void findByPage() throws Exception {

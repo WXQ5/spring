@@ -5,9 +5,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
-        //获得容器
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-        PersonService personService = (PersonService) ctx.getBean("personService");
-        personService.print();
+       CalculatorProxy calculatorProxy = new CalculatorProxy();
+       calculatorProxy.add();
+       calculatorProxy.sub();
+       calculatorProxy.mul();
+       calculatorProxy.div();
     }
 }

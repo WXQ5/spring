@@ -4,12 +4,13 @@ import com.abc.controller.vo.DelVO;
 import com.abc.dao.entity.Emp;
 import com.abc.dao.idao.IEmpDao;
 import com.abc.dao.util.DBUtil;
+import org.springframework.stereotype.Repository;
 
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository("empDao")
 public class EmpDaoImpl implements IEmpDao {
     @Override
     public List<Emp> findByPage(int start, int size) throws Exception {

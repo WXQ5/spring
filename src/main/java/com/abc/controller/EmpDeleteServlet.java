@@ -1,8 +1,9 @@
 package com.abc.controller;
 
 import com.abc.common.Comm;
+import com.abc.common.SpringIOC;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class EmpDeleteServlet extends HttpServlet {
         //1--取值
         int empno = Integer.parseInt(request.getParameter("empno"));
         //2--处理
-        IEmpService empService = (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         Emp emp = new Emp();
         emp.setEmpno(empno);
         String msg = empService.delete(emp);

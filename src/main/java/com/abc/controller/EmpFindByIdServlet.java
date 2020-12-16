@@ -1,8 +1,9 @@
 package com.abc.controller;
 
 import com.abc.common.Comm;
+import com.abc.common.SpringIOC;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class EmpFindByIdServlet extends HttpServlet {
         }
 
         //2--处理
-        IEmpService empService = (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         List<Emp> emps = new ArrayList<Emp>();
         Emp emp = empService.findById(empno);
         emps.add(emp);
@@ -53,7 +55,7 @@ public class EmpFindByIdServlet extends HttpServlet {
         if(empnoParam != null && !"".equals(empnoParam.trim())){
             empno = Integer.parseInt(empnoParam);
         }
-        IEmpService empService = (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         Emp emp = empService.findById(empno);
         if (emp != null) {
             request.setAttribute("empsFromService",emp);

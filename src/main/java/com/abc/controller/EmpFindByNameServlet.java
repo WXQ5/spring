@@ -1,8 +1,9 @@
 package com.abc.controller;
 
 import com.abc.common.Comm;
+import com.abc.common.SpringIOC;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ public class EmpFindByNameServlet extends HttpServlet {
         String ename = request.getParameter("ename");
 
         //2--处理
-        IEmpService empService = (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         List<Emp> emps = empService.findByName(ename);
 
         //3--反馈 使用Java模板引擎

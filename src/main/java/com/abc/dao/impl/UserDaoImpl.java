@@ -3,11 +3,12 @@ package com.abc.dao.impl;
 import com.abc.dao.entity.User;
 import com.abc.dao.idao.IUserDao;
 import com.abc.dao.util.DBUtil;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+@Repository("usertDao")
 //对应的数据库sql语句的执行 返回查询结果给service service在进行对结果的分析处理
 public class UserDaoImpl implements IUserDao {
     @Override

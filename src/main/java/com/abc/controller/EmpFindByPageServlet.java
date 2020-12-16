@@ -2,8 +2,9 @@ package com.abc.controller;
 
 import com.abc.common.Comm;
 import com.abc.common.Res;
+import com.abc.common.SpringIOC;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 import com.alibaba.fastjson.JSON;
 
@@ -38,7 +39,7 @@ public class EmpFindByPageServlet extends HttpServlet {
             size = Integer.parseInt(sizeParam);
         }
         //2--处理
-        IEmpService empService = (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         List<Emp> emps = empService.findByPage(page,size);
 
         //3--反馈 使用Java模板引擎
