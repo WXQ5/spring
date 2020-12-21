@@ -1,7 +1,5 @@
 package com.abc.ssm.spring;
-
 import org.springframework.transaction.annotation.Transactional;
-
 //使用代理模式 代理类
 public class CalculatorProxy implements Calculator{
     private Calculator calculator;
@@ -9,7 +7,6 @@ public class CalculatorProxy implements Calculator{
     public CalculatorProxy() {
         calculator = new CalcullatorImp();
     }
-
     @Override
     public void add() {
         System.out.println("验证参数");
