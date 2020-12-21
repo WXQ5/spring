@@ -17,5 +17,5 @@ public interface IEmpService {
 
     Res<List<Emp>> findByDept(int deptno);
 
-    Res delBatch(List<DelVO> delVOList);
+   // Res delBatch(List<DelVO> delVOList);
 }

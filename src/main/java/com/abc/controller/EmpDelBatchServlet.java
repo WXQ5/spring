@@ -25,9 +25,9 @@ public class EmpDelBatchServlet extends HttpServlet {
       //fastjson将字符串empnos变为集合
         List<DelVO> delVOList = JSON.parseObject(empnos,new TypeReference<List<DelVO>>(){});
         IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
-        Res res = empService.delBatch(delVOList);
+        //Res res = empService.delBatch(delVOList);
         PrintWriter out = response.getWriter();
-        out.println(JSON.toJSONString(res));
+        //ut.println(JSON.toJSONString(res));
         out.close();
 
     }

@@ -6,7 +6,7 @@ import com.abc.common.ResEnum;
 import com.abc.controller.vo.DelVO;
 import com.abc.dao.entity.Emp;
 
-import com.abc.dao.idao.IEmpDao;
+import com.abc.dao.idao.EmpDao;
 import com.abc.service.iservice.IEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service("empService")
 public class EmpServiceImpl implements IEmpService {
     @Autowired
-    IEmpDao empDao;
+    EmpDao empDao;
 
 
     @Override
@@ -98,7 +98,7 @@ public class EmpServiceImpl implements IEmpService {
         return (emps != null && emps.size()>0)?Res.sucess(ResEnum.SUCCESS,emps):Res.error();
     }
 
-    @Override
+   /* @Override
     public Res delBatch(List<DelVO> delVOList) {
         //如果传来参数为空 直接返回 保证数据不为空
         if(delVOList == null && delVOList.size() == 0){
@@ -111,5 +111,5 @@ public class EmpServiceImpl implements IEmpService {
             e.printStackTrace();
         }
         return Res.error();
-    }
+    }*/
 }

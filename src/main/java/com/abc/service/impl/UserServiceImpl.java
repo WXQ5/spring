@@ -1,11 +1,10 @@
 package com.abc.service.impl;
 
-import com.abc.common.Comm;
 import com.abc.common.Res;
 import com.abc.common.ResEnum;
 import com.abc.dao.entity.User;
 
-import com.abc.dao.idao.IUserDao;
+import com.abc.dao.idao.UserDao;
 import com.abc.service.iservice.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service("userService")
 public class UserServiceImpl implements IUserService {
     @Autowired
-    IUserDao userDao;
+    UserDao userDao;
 
 
 

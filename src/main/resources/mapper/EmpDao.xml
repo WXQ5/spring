@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.idao.EmpDao">
+    <!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！-->
+    <resultMap id="UserResultMap" type="com.abc.dao.entity.Emp">
+        <id column="EMPNO" property="empno" jdbcType="INTEGER" />
+        <result column="ENAME" property="ename" jdbcType="VARCHAR" />
+        <result column="HIREDATE" property="hiredate" jdbcType="DATE" />
+        <result column="SAL" property="sal" jdbcType="DECIMAL" />
+    </resultMap>
+    <!-- 查询单条记录 -->
+
+    <sql id="allEmpClum">
+        empno,ename,hiredate,sal
+    </sql>
+    <update id="update" parameterType="map">
+        update emp
+        <set>
+            <if test="ename != null">
+                ename = #{ename},
+            </if>
+            <if test="hiredate != null">
+                hiredate = #{hiredate},
+            </if>
+            <if test="sal != null">
+                sal = #{sal},
+            </if>
+        </set>
+        where empno = #{empno}
+    </update>
+    <insert id="saveBatch">
+        insert into
+        emp(ename,hiredate,sal)
+        values
+        <foreach collection="list"   separator="," item="empitem" >
+            (#{empitem.ename},#{empitem.hiredate},#{empitem.sal})
+        </foreach>
+    </insert>
+    <insert id="save" keyProperty="empno" useGeneratedKeys="true">
+        insert into emp(ename,hiredate,sal) values (#{ename},#{hiredate},#{sal})
+    </insert>
+    <delete id="delBatch">
+        delete from emp where empno in
+        <foreach collection="list" index="idx" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="delete" parameterType="map" >
+        delete from emp where empno = #{empno}
+    </delete>
+    <select id="findByDept" parameterType="map" resultType="com.abc.dao.entity.Emp">
+        select <include refid="allEmpClum"/> from emp where deptno = #{deptno}
+    </select>
+    <select id="findByName" parameterType="map" resultType="com.abc.dao.entity.Emp">
+        select <include refid="allEmpClum"/> from emp where ename like concat('%',#{ename},'%')
+    </select>
+    <select id="findById" parameterType="map" resultType="com.abc.dao.entity.Emp">
+        select <include refid="allEmpClum"/> from emp where empno=#{empno}
+    </select>
+    <select id="findByPage" parameterType="map" resultType="com.abc.dao.entity.Emp">
+        select <include refid="allEmpClum"/> from emp limit #{start},#{size}
+    </select>
+    <select id="findCon" parameterType="map" resultType="com.abc.dao.entity.Emp">
+        select
+        <include refid="allEmpClum"/>
+        from emp
+        <where>
+        <if test="ename != null and ename != ''">
+            and ename like concat('%',#{ename},'%')
+        </if>
+        <if test="hiredate != null">
+            and hiredate &lt; #{hiredate}
+        </if>
+        <if test="sal != null">
+            and sal &gt; #{sal}
+        </if>
+        </where>
+
+    </select>
+
+</mapper>
