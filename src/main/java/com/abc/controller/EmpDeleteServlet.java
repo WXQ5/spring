@@ -18,6 +18,7 @@ import java.io.IOException;
 public class EmpDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1--取值
+        request.setCharacterEncoding("utf-8");
         int empno = Integer.parseInt(request.getParameter("empno"));
         //2--处理
         IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
@@ -25,6 +26,7 @@ public class EmpDeleteServlet extends HttpServlet {
         emp.setEmpno(empno);
         String msg = empService.delete(emp);
         //3--反馈
+        response.setCharacterEncoding("utf-8");
         if(Comm.SUCCESS.equals(msg)){
             //重定向
             response.sendRedirect(request.getContextPath()+"/empbypage");

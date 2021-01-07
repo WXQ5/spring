@@ -21,7 +21,9 @@ import java.util.List;
 @WebServlet(name = "EmpDelBatchServlet",urlPatterns = {"/empdelbatch"})
 public class EmpDelBatchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String empnos = request.getParameter("empnos");
+        request.setCharacterEncoding("utf-8");
+        String empnos = request.getParameter("empnos");
+        response.setCharacterEncoding("utf-8");
       //fastjson将字符串empnos变为集合
         List<DelVO> delVOList = JSON.parseObject(empnos,new TypeReference<List<DelVO>>(){});
         IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");

@@ -20,4 +20,5 @@ public class Emp {
         this.hiredate = hiredate;
         this.sal = sal;
     }
+
 }

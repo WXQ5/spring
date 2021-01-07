@@ -21,6 +21,7 @@ import java.io.PrintWriter;
 public class UserLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //取值
+        request.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         //处理

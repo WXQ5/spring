@@ -1,5 +1,6 @@
 package com.abc.dao.idao;
 
+import com.abc.dao.EmpDao;
 import com.abc.dao.entity.Emp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class EmpDaoTest {
@@ -78,9 +78,9 @@ public class EmpDaoTest {
     @Test
     public void saveBatch(){
         List<Emp> emps = Arrays.asList(
-                new Emp("zhou5",new Date(),new BigDecimal(1234)),
-                new Emp("zhou6",new Date(),new BigDecimal(1234)),
-                new Emp("zhou7",new Date(),new BigDecimal(1234))
+                new Emp("卫庄",new Date(),new BigDecimal(1234)),
+                new Emp("曹操",new Date(),new BigDecimal(1234)),
+                new Emp("周瑜",new Date(),new BigDecimal(1234))
                 );
         System.out.println(empDao.saveBatch(emps));
     }

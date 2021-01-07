@@ -4,7 +4,7 @@ import com.abc.common.Res;
 import com.abc.common.ResEnum;
 import com.abc.dao.entity.User;
 
-import com.abc.dao.idao.UserDao;
+import com.abc.dao.UserDao;
 import com.abc.service.iservice.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +39,11 @@ public class UserServiceImpl implements IUserService {
         }
         if(result != null){
             //对信息进行过滤
+            System.out.println("获取登录成功");
             result.setPassword("");
             return  Res.sucess(ResEnum.SUCCESS,result);
         }
+        System.out.println("获取失败");
         return Res.error(ResEnum.ERROR);
     }
 }

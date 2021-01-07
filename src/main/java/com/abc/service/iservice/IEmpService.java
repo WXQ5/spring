@@ -4,6 +4,7 @@ import com.abc.common.Res;
 import com.abc.controller.vo.DelVO;
 import com.abc.dao.entity.Emp;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface IEmpService {
@@ -17,5 +18,7 @@ public interface IEmpService {
 
     Res<List<Emp>> findByDept(int deptno);
 
-   // Res delBatch(List<DelVO> delVOList);
+    Res delBatch(List<DelVO> delVOList);
+    Res saveBatch(List<Emp> empList);
+    Res tranferMoney(Integer accountFrom, Integer accountTo, BigDecimal money);
 }

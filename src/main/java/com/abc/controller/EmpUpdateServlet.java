@@ -21,6 +21,7 @@ import java.util.Date;
 @WebServlet(name = "/EmpUpdateServlet",urlPatterns = {"/empupdate"})
 public class EmpUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         int empno = Integer.parseInt(request.getParameter("empno"));
         String ename = request.getParameter("ename");
         Date hiredate = null;
@@ -33,6 +34,7 @@ public class EmpUpdateServlet extends HttpServlet {
         IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         Emp emp = new Emp(empno,ename, hiredate, sal);
         String msg = empService.update(emp);
+        response.setCharacterEncoding("utf-8");
         //3--反馈
         if (Comm.SUCCESS.equals(msg)) {
             //重定向

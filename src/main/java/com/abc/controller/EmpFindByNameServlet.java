@@ -19,11 +19,11 @@ import java.util.List;
 public class EmpFindByNameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ename = request.getParameter("ename");
-
+        request.setCharacterEncoding("utf-8");
         //2--处理
         IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         List<Emp> emps = empService.findByName(ename);
-
+        response.setCharacterEncoding("utf-8");
         //3--反馈 使用Java模板引擎
         if (emps != null && emps.size() > 0) {
             System.out.println(emps);

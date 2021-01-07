@@ -6,7 +6,7 @@
     private int sid;
     private int cid;
     private Course course;-->
-<mapper namespace="com.abc.dao.idao.StudentDao">
+<mapper namespace="com.abc.dao.StudentDao">
     <!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！-->
     <!--学生表 成绩表 课程表 三表联查 多对多案例   以下是多对多表单写法-->
     <resultMap id="StuResultMap" type="com.abc.dao.entity.Student">

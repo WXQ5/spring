@@ -1,4 +1,4 @@
-package com.abc.dao.idao;
+package com.abc.dao;
 
 import com.abc.controller.vo.DelVO;
 import com.abc.dao.entity.Emp;

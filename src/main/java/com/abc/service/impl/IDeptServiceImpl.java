@@ -4,8 +4,9 @@ import com.abc.common.Res;
 import com.abc.common.ResEnum;
 import com.abc.dao.entity.Dept;
 
-import com.abc.dao.idao.DeptDao;
+import com.abc.dao.DeptDao;
 import com.abc.service.iservice.IDeptService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,9 @@ public class IDeptServiceImpl implements IDeptService {
     public Res<List<Dept>> findAll() {
         List<Dept> depts = new ArrayList<Dept>();
         try {
+            PageHelper.startPage(2,2);
             depts = deptDao.findAll();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

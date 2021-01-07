@@ -20,7 +20,10 @@ import java.util.List;
 public class DeptFindAllServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         IDeptService iDeptService = (IDeptService) SpringIOC.getSpringIOC().getBean("deptService");
+
+        response.setCharacterEncoding("utf-8");
         Res<List<Dept>> res =  iDeptService.findAll();
         PrintWriter out = response.getWriter();
         out.println(JSON.toJSONString(res));

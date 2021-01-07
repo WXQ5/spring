@@ -20,6 +20,7 @@ import java.io.PrintWriter;
 public class UserExistServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1-取值
+        request.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
         //2-处理
         IUserService userService = (IUserService) SpringIOC.getSpringIOC().getBean("userService");

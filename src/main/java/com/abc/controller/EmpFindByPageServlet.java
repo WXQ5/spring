@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "/EmpFindByPageServlet",urlPatterns = {"/empbypage"})
@@ -22,6 +26,7 @@ public class EmpFindByPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         //1--取值
+        request.setCharacterEncoding("utf-8");
         if(session.getAttribute(Comm.CURRENT_USER) == null){
 
             session.setAttribute("errMsg","请先登录");
@@ -41,11 +46,17 @@ public class EmpFindByPageServlet extends HttpServlet {
         //2--处理
         IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         List<Emp> emps = empService.findByPage(page,size);
-
+        response.setCharacterEncoding("utf-8");
         //3--反馈 使用Java模板引擎
         //System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$"+emps);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         if (emps != null && emps.size() > 0) {
-            System.out.println(emps);
+          /*  emps.stream().forEach(x-> {
+                        Date date = dateFormat.format(x.getHiredate());
+                        x.setHiredate(date);
+            });*/
+
             request.setAttribute("empsFromService",emps);
             request.getRequestDispatcher("/emps.jsp").forward(request,response);
         } else {

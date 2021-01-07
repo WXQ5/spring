@@ -21,7 +21,7 @@ import java.util.List;
 public class EmpFindByIdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int empno = 0;
-
+        request.setCharacterEncoding("utf-8");
         String empnoParam = request.getParameter("empno");
 
         //传参的时候需要对完整性进行校验 防止漏洞
@@ -35,7 +35,7 @@ public class EmpFindByIdServlet extends HttpServlet {
         Emp emp = empService.findById(empno);
         emps.add(emp);
         //3--反馈 使用Java模板引擎
-
+        response.setCharacterEncoding("utf-8");
         if (emps != null && emps.size() > 0) {
             System.out.println(emps);
             request.setAttribute("empsFromService",emps);

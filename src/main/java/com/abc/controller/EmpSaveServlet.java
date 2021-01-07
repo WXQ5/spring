@@ -22,6 +22,7 @@ import java.util.Date;
 @WebServlet(name = "/EmpSaveServlet",urlPatterns = {"/empsave"})
 public class EmpSaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         String ename = request.getParameter("ename");
         Date hiredate = null;
         try {
@@ -32,7 +33,7 @@ public class EmpSaveServlet extends HttpServlet {
         BigDecimal sal = new BigDecimal(request.getParameter("sal"));
         IEmpService empService = (IEmpService) SpringIOC.getSpringIOC().getBean("empService");
         Emp emp = new Emp(ename, hiredate, sal);
-
+        response.setCharacterEncoding("utf-8");
         String msg = empService.save(emp);
         //3--反馈
         if (Comm.SUCCESS.equals(msg)) {
